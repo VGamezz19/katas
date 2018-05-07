@@ -8,8 +8,8 @@ describe("Censor word", () => {
         const inputText = 'hello! you are so nice!';
 
         const censoredText = censor(blackWord, inputText);
-        const assertText = "hello! you are so XXXX!";
+        const assertionText = "hello! you are so XXXX!";
 
-        assert.equal(censoredText, assertText, `It should replace ${blackWord} from ${inputText}`);
+        assert.equal(censoredText, assertionText, `It should replace ${blackWord} from ${inputText}`);
     });
 });
