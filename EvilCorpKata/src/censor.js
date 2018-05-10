@@ -13,12 +13,9 @@ module.exports = (word, text) => {
 function validate(obj) {
   if (!obj instanceof Object) throw new Error("Invalid entry from validate(obj: Object)")
 
-  for (el of obj) {
-    if (!el) {
+  for (el in obj)
+    if (!obj[el]) throw new Error("Mandatory prop " + el)
 
-      throw new Error("Mandatory propr -->" + el)
-    }
-  }
 }
 
 function howManySymbolsToPut(word) {
