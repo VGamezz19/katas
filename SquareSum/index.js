@@ -3,8 +3,9 @@ function squareSumsRow(num) {
         const options = {range: [1,1000], discard: 780}
 
         validate(num, options)
+        console.log("yes")
     } catch (err) {
-
+        console.error(err)
     }
 }
 
@@ -31,15 +32,19 @@ function validate(num, { range = undefined, discard = undefined }) {
     const { constructor: { name: instanceOf } } = num
 
     if (instanceOf === "String") {
-        let converted = new Number(num)
+        if(isNaN(num)) {
+            throw new TypeError("Invalid Type, mandatory number")
+        }
+
+        let converted = +num
 
         return validate(converted, { range, discard })
     }
     
     if (instanceOf !== "Number") 
         throw new TypeError("Invalid Type, mandatory number")
-    
-    if (!Number.isInteger()) 
+
+    if (!Number.isInteger(num)) 
         throw new RangeError("Only accept Integer numbers")
 
     if (!validateRange(num, range)) 
